@@ -212,7 +212,7 @@ namespace Personen_Forms
 
         private void ZeigeFelder()
         {
-            if (mylist.Count > 0)    // need to replace an better check if list is empty before display
+            if (mylist.Count > 0)    // need to replace an better check if list is empty before display, added for scroll feature
             {
                 TB_Anrede.Text = mylist[index].Anrede;
                 TB_VorName.Text = mylist[index].VorName;
