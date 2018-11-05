@@ -9,6 +9,7 @@ namespace Personen_Forms
     {
         private List<Personen> mylist = new List<Personen>();
         private string path = @"c:\test\PersonenListenText.csv";
+        private int index = 0;
 
 
         public Personen_Window()
@@ -29,23 +30,63 @@ namespace Personen_Forms
 
         private void BT_SchnellZurück_Click(object sender, EventArgs e)
         {
-            // need code
+            if (index -5 < 0)
+            {
+                index = 0;
+                MessageBox.Show("Liste am anfang!", "index anfang", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                zeigeFelder();
+            }
+            else
+            {
+                index -= 5;
+                zeigeFelder();
+            }
+        
         }
 
         private void BT_Zurück_Click(object sender, EventArgs e)
         {
-            // need code
+            if (index -1 < 0)
+            {
+                index = 0;
+                MessageBox.Show("Liste am anfang!", "index anfang", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                zeigeFelder();
+            }
+            else
+            {
+                index--;
+                zeigeFelder();                
+            }
         }
 
         private void BT_Vorwärts_Click(object sender, EventArgs e)
         {
-            
-            //TB_Anrede = 
+            if (index + 1 > mylist.Count -1)
+            {
+                index = mylist.Count- 1;
+                MessageBox.Show("Liste am Ende!", "index ende", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                zeigeFelder();
+            }
+            else
+            {
+                index++;
+                zeigeFelder();
+            }
         }
 
         private void BT_Schnell_Vorwärts_Click(object sender, EventArgs e)
         {
-            // need code
+            if (index + 5 > mylist.Count -1)
+            {
+                index = mylist.Count -1;
+                MessageBox.Show("Liste am Ende!", "index ende", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                zeigeFelder();
+            }
+            else
+            {
+                index += 5;
+                zeigeFelder();
+            }
         }
 
         private void BTN_Person_HinzuFügen_Click(object sender, EventArgs e)
@@ -70,7 +111,7 @@ namespace Personen_Forms
             string content = "";
             foreach (var pers in mylist)
             {
-                content += pers.VorName + " " + pers.NachName + " " + pers.Strasse + " " + pers.WohnOrt;
+                content += pers.Anrede + " " + pers.VorName + " " + pers.NachName + " " + pers.Strasse + " " + pers.PostLeitZahl + " " + pers.WohnOrt;
                 content += Environment.NewLine;
             }
             RTB_Display.Text = content;
@@ -115,13 +156,9 @@ namespace Personen_Forms
         {
             string[] t_string;
 
-
             try
             {
                 t_string = File.ReadAllLines(path);
-
-           
-
                 mylist.Clear();
                 foreach (var satz in t_string)
                 {
@@ -156,6 +193,18 @@ namespace Personen_Forms
             TB_Wohnort.Clear();
             TB_Telefon.Clear();
             TB_Email.Clear();
+        }
+
+        private void zeigeFelder()
+        {
+            TB_Anrede.Text = mylist[index].Anrede;
+            TB_VorName.Text = mylist[index].VorName;
+            TB_Nachname.Text = mylist[index].NachName;
+            TB_Strasse.Text = mylist[index].Strasse;
+            TB_PostleitZahl.Text = mylist[index].PostLeitZahl;
+            TB_Wohnort.Text = mylist[index].WohnOrt;
+            TB_Telefon.Text = mylist[index].Telefon;
+            TB_Email.Text = mylist[index].Email;
         }
 
     }
