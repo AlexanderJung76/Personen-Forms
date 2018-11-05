@@ -151,13 +151,13 @@ namespace Personen_Forms
                     content += pers.Anrede + trennzeichen + pers.VorName + trennzeichen + pers.NachName + trennzeichen + pers.Strasse + trennzeichen + pers.PostLeitZahl + trennzeichen + pers.WohnOrt + trennzeichen + pers.Telefon + trennzeichen + pers.Email;
                     content += Environment.NewLine;
                 }
+
                 try
                 {
                     File.WriteAllText(path, content);
                 }
                 catch (Exception e)
                 {
-
                     MessageBox.Show(e.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
@@ -192,7 +192,6 @@ namespace Personen_Forms
             }
             catch (Exception e)
             {
-
                 MessageBox.Show(e.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             MessageBox.Show("Datei geladen", "File loaded", MessageBoxButtons.OK, MessageBoxIcon.Information);
