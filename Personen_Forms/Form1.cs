@@ -34,12 +34,12 @@ namespace Personen_Forms
             {
                 index = 0;
                 MessageBox.Show("Liste am anfang!", "index anfang", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                zeigeFelder();
+                ZeigeFelder();
             }
             else
             {
                 index -= 5;
-                zeigeFelder();
+                ZeigeFelder();
             }
         
         }
@@ -50,12 +50,12 @@ namespace Personen_Forms
             {
                 index = 0;
                 MessageBox.Show("Liste am anfang!", "index anfang", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                zeigeFelder();
+                ZeigeFelder();
             }
             else
             {
                 index--;
-                zeigeFelder();                
+                ZeigeFelder();                
             }
         }
 
@@ -65,12 +65,12 @@ namespace Personen_Forms
             {
                 index = mylist.Count- 1;
                 MessageBox.Show("Liste am Ende!", "index ende", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                zeigeFelder();
+                ZeigeFelder();
             }
             else
             {
                 index++;
-                zeigeFelder();
+                ZeigeFelder();
             }
         }
 
@@ -80,12 +80,12 @@ namespace Personen_Forms
             {
                 index = mylist.Count -1;
                 MessageBox.Show("Liste am Ende!", "index ende", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                zeigeFelder();
+                ZeigeFelder();
             }
             else
             {
                 index += 5;
-                zeigeFelder();
+                ZeigeFelder();
             }
         }
 
@@ -115,6 +115,21 @@ namespace Personen_Forms
                 content += Environment.NewLine;
             }
             RTB_Display.Text = content;
+        }
+
+        private void BTN_Person_Entfernen_Click(object sender, EventArgs e)
+        {
+            if (DialogResult.OK == MessageBox.Show("Achtung Eintrag wird gelöscht!", "Warnung!!!",
+            MessageBoxButtons.OKCancel, MessageBoxIcon.Warning))
+            {
+                mylist.RemoveAt(index);
+                if (index + 1 < mylist.Count - 1)
+                {
+                    index++;
+                }
+                else index--;
+                ZeigeFelder();
+            }                
         }
 
         private void BTN_Clear_Click(object sender, EventArgs e)
@@ -195,16 +210,20 @@ namespace Personen_Forms
             TB_Email.Clear();
         }
 
-        private void zeigeFelder()
+        private void ZeigeFelder()
         {
-            TB_Anrede.Text = mylist[index].Anrede;
-            TB_VorName.Text = mylist[index].VorName;
-            TB_Nachname.Text = mylist[index].NachName;
-            TB_Strasse.Text = mylist[index].Strasse;
-            TB_PostleitZahl.Text = mylist[index].PostLeitZahl;
-            TB_Wohnort.Text = mylist[index].WohnOrt;
-            TB_Telefon.Text = mylist[index].Telefon;
-            TB_Email.Text = mylist[index].Email;
+            if (mylist.Count > 0)    // need to replace an better check if list is empty before display
+            {
+                TB_Anrede.Text = mylist[index].Anrede;
+                TB_VorName.Text = mylist[index].VorName;
+                TB_Nachname.Text = mylist[index].NachName;
+                TB_Strasse.Text = mylist[index].Strasse;
+                TB_PostleitZahl.Text = mylist[index].PostLeitZahl;
+                TB_Wohnort.Text = mylist[index].WohnOrt;
+                TB_Telefon.Text = mylist[index].Telefon;
+                TB_Email.Text = mylist[index].Email; 
+            }
+            else MessageBox.Show("Liste noch leer!", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
     }

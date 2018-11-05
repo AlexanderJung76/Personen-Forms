@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Personen_Window));
             this.TB_Anrede = new System.Windows.Forms.TextBox();
             this.LBL_Anrede = new System.Windows.Forms.Label();
             this.TB_VorName = new System.Windows.Forms.TextBox();
@@ -54,6 +55,7 @@
             this.BTN_Person_HinzuFügen = new System.Windows.Forms.Button();
             this.BTN_Person_Anzeigen = new System.Windows.Forms.Button();
             this.BTN_Clear = new System.Windows.Forms.Button();
+            this.BTN_Person_Entfernen = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // TB_Anrede
@@ -186,7 +188,7 @@
             // 
             // BT_SchnellZurück
             // 
-            this.BT_SchnellZurück.Location = new System.Drawing.Point(439, 380);
+            this.BT_SchnellZurück.Location = new System.Drawing.Point(41, 382);
             this.BT_SchnellZurück.Name = "BT_SchnellZurück";
             this.BT_SchnellZurück.Size = new System.Drawing.Size(50, 40);
             this.BT_SchnellZurück.TabIndex = 16;
@@ -196,7 +198,7 @@
             // 
             // BT_Zurück
             // 
-            this.BT_Zurück.Location = new System.Drawing.Point(532, 380);
+            this.BT_Zurück.Location = new System.Drawing.Point(134, 382);
             this.BT_Zurück.Name = "BT_Zurück";
             this.BT_Zurück.Size = new System.Drawing.Size(50, 40);
             this.BT_Zurück.TabIndex = 17;
@@ -206,7 +208,7 @@
             // 
             // BT_Vorwärts
             // 
-            this.BT_Vorwärts.Location = new System.Drawing.Point(646, 380);
+            this.BT_Vorwärts.Location = new System.Drawing.Point(248, 382);
             this.BT_Vorwärts.Name = "BT_Vorwärts";
             this.BT_Vorwärts.Size = new System.Drawing.Size(50, 40);
             this.BT_Vorwärts.TabIndex = 18;
@@ -216,7 +218,7 @@
             // 
             // BT_Schnell_Vorwärts
             // 
-            this.BT_Schnell_Vorwärts.Location = new System.Drawing.Point(730, 380);
+            this.BT_Schnell_Vorwärts.Location = new System.Drawing.Point(332, 382);
             this.BT_Schnell_Vorwärts.Name = "BT_Schnell_Vorwärts";
             this.BT_Schnell_Vorwärts.Size = new System.Drawing.Size(50, 40);
             this.BT_Schnell_Vorwärts.TabIndex = 19;
@@ -228,13 +230,13 @@
             // 
             this.RTB_Display.Location = new System.Drawing.Point(404, 30);
             this.RTB_Display.Name = "RTB_Display";
-            this.RTB_Display.Size = new System.Drawing.Size(409, 300);
+            this.RTB_Display.Size = new System.Drawing.Size(409, 346);
             this.RTB_Display.TabIndex = 20;
             this.RTB_Display.Text = "";
             // 
             // BTN_CSV_Laden
             // 
-            this.BTN_CSV_Laden.Location = new System.Drawing.Point(404, 336);
+            this.BTN_CSV_Laden.Location = new System.Drawing.Point(404, 382);
             this.BTN_CSV_Laden.Name = "BTN_CSV_Laden";
             this.BTN_CSV_Laden.Size = new System.Drawing.Size(100, 23);
             this.BTN_CSV_Laden.TabIndex = 21;
@@ -244,7 +246,7 @@
             // 
             // BTN_CSV_Schreiben
             // 
-            this.BTN_CSV_Schreiben.Location = new System.Drawing.Point(713, 336);
+            this.BTN_CSV_Schreiben.Location = new System.Drawing.Point(713, 382);
             this.BTN_CSV_Schreiben.Name = "BTN_CSV_Schreiben";
             this.BTN_CSV_Schreiben.Size = new System.Drawing.Size(100, 23);
             this.BTN_CSV_Schreiben.TabIndex = 22;
@@ -256,7 +258,7 @@
             // 
             this.BTN_Person_HinzuFügen.Location = new System.Drawing.Point(77, 336);
             this.BTN_Person_HinzuFügen.Name = "BTN_Person_HinzuFügen";
-            this.BTN_Person_HinzuFügen.Size = new System.Drawing.Size(100, 40);
+            this.BTN_Person_HinzuFügen.Size = new System.Drawing.Size(80, 40);
             this.BTN_Person_HinzuFügen.TabIndex = 23;
             this.BTN_Person_HinzuFügen.Text = "Person Hinzufügen";
             this.BTN_Person_HinzuFügen.UseVisualStyleBackColor = true;
@@ -264,7 +266,7 @@
             // 
             // BTN_Person_Anzeigen
             // 
-            this.BTN_Person_Anzeigen.Location = new System.Drawing.Point(563, 336);
+            this.BTN_Person_Anzeigen.Location = new System.Drawing.Point(563, 382);
             this.BTN_Person_Anzeigen.Name = "BTN_Person_Anzeigen";
             this.BTN_Person_Anzeigen.Size = new System.Drawing.Size(100, 40);
             this.BTN_Person_Anzeigen.TabIndex = 24;
@@ -274,19 +276,32 @@
             // 
             // BTN_Clear
             // 
-            this.BTN_Clear.Location = new System.Drawing.Point(256, 336);
+            this.BTN_Clear.Location = new System.Drawing.Point(276, 336);
             this.BTN_Clear.Name = "BTN_Clear";
-            this.BTN_Clear.Size = new System.Drawing.Size(100, 40);
+            this.BTN_Clear.Size = new System.Drawing.Size(80, 40);
             this.BTN_Clear.TabIndex = 25;
-            this.BTN_Clear.Text = "Clear";
+            this.BTN_Clear.Text = "Clear Input";
             this.BTN_Clear.UseVisualStyleBackColor = true;
             this.BTN_Clear.Click += new System.EventHandler(this.BTN_Clear_Click);
+            // 
+            // BTN_Person_Entfernen
+            // 
+            this.BTN_Person_Entfernen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.BTN_Person_Entfernen.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.BTN_Person_Entfernen.Location = new System.Drawing.Point(176, 336);
+            this.BTN_Person_Entfernen.Name = "BTN_Person_Entfernen";
+            this.BTN_Person_Entfernen.Size = new System.Drawing.Size(80, 40);
+            this.BTN_Person_Entfernen.TabIndex = 26;
+            this.BTN_Person_Entfernen.Text = "Person Entfernen";
+            this.BTN_Person_Entfernen.UseVisualStyleBackColor = false;
+            this.BTN_Person_Entfernen.Click += new System.EventHandler(this.BTN_Person_Entfernen_Click);
             // 
             // Personen_Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(845, 432);
+            this.ClientSize = new System.Drawing.Size(829, 432);
+            this.Controls.Add(this.BTN_Person_Entfernen);
             this.Controls.Add(this.BTN_Clear);
             this.Controls.Add(this.BTN_Person_Anzeigen);
             this.Controls.Add(this.BTN_Person_HinzuFügen);
@@ -313,6 +328,7 @@
             this.Controls.Add(this.TB_VorName);
             this.Controls.Add(this.LBL_Anrede);
             this.Controls.Add(this.TB_Anrede);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Personen_Window";
             this.Text = "Personen";
             this.ResumeLayout(false);
@@ -348,6 +364,7 @@
         private System.Windows.Forms.Button BTN_Person_HinzuFügen;
         private System.Windows.Forms.Button BTN_Person_Anzeigen;
         private System.Windows.Forms.Button BTN_Clear;
+        private System.Windows.Forms.Button BTN_Person_Entfernen;
     }
 }
 
