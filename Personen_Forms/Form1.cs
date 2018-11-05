@@ -39,7 +39,8 @@ namespace Personen_Forms
 
         private void BT_Vorwärts_Click(object sender, EventArgs e)
         {
-            // need code
+            
+            //TB_Anrede = 
         }
 
         private void BT_Schnell_Vorwärts_Click(object sender, EventArgs e)
@@ -56,7 +57,7 @@ namespace Personen_Forms
             me.NachName = TB_Nachname.Text;
             me.Strasse = TB_Strasse.Text;
             me.PostLeitZahl = TB_PostleitZahl.Text;
-            me.WohnOrt = TB_PostleitZahl.Text;
+            me.WohnOrt = TB_Wohnort.Text;
             me.Telefon = TB_Telefon.Text;
             me.Email = TB_Email.Text;
 
@@ -73,6 +74,11 @@ namespace Personen_Forms
                 content += Environment.NewLine;
             }
             RTB_Display.Text = content;
+        }
+
+        private void BTN_Clear_Click(object sender, EventArgs e)
+        {
+            TextBoxClear();
         }
 
         // Methoden

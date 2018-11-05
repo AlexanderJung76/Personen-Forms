@@ -53,6 +53,7 @@
             this.BTN_CSV_Schreiben = new System.Windows.Forms.Button();
             this.BTN_Person_HinzuFügen = new System.Windows.Forms.Button();
             this.BTN_Person_Anzeigen = new System.Windows.Forms.Button();
+            this.BTN_Clear = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // TB_Anrede
@@ -237,7 +238,7 @@
             this.BTN_CSV_Laden.Name = "BTN_CSV_Laden";
             this.BTN_CSV_Laden.Size = new System.Drawing.Size(100, 23);
             this.BTN_CSV_Laden.TabIndex = 21;
-            this.BTN_CSV_Laden.Text = "CVS Laden";
+            this.BTN_CSV_Laden.Text = "CSV Laden";
             this.BTN_CSV_Laden.UseVisualStyleBackColor = true;
             this.BTN_CSV_Laden.Click += new System.EventHandler(this.BTN_CSV_Laden_Click);
             // 
@@ -253,7 +254,7 @@
             // 
             // BTN_Person_HinzuFügen
             // 
-            this.BTN_Person_HinzuFügen.Location = new System.Drawing.Point(154, 336);
+            this.BTN_Person_HinzuFügen.Location = new System.Drawing.Point(77, 336);
             this.BTN_Person_HinzuFügen.Name = "BTN_Person_HinzuFügen";
             this.BTN_Person_HinzuFügen.Size = new System.Drawing.Size(100, 40);
             this.BTN_Person_HinzuFügen.TabIndex = 23;
@@ -271,11 +272,22 @@
             this.BTN_Person_Anzeigen.UseVisualStyleBackColor = true;
             this.BTN_Person_Anzeigen.Click += new System.EventHandler(this.BTN_Person_Anzeigen_Click);
             // 
+            // BTN_Clear
+            // 
+            this.BTN_Clear.Location = new System.Drawing.Point(256, 336);
+            this.BTN_Clear.Name = "BTN_Clear";
+            this.BTN_Clear.Size = new System.Drawing.Size(100, 40);
+            this.BTN_Clear.TabIndex = 25;
+            this.BTN_Clear.Text = "Clear";
+            this.BTN_Clear.UseVisualStyleBackColor = true;
+            this.BTN_Clear.Click += new System.EventHandler(this.BTN_Clear_Click);
+            // 
             // Personen_Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(845, 432);
+            this.Controls.Add(this.BTN_Clear);
             this.Controls.Add(this.BTN_Person_Anzeigen);
             this.Controls.Add(this.BTN_Person_HinzuFügen);
             this.Controls.Add(this.BTN_CSV_Schreiben);
@@ -335,6 +347,7 @@
         private System.Windows.Forms.Button BTN_CSV_Schreiben;
         private System.Windows.Forms.Button BTN_Person_HinzuFügen;
         private System.Windows.Forms.Button BTN_Person_Anzeigen;
+        private System.Windows.Forms.Button BTN_Clear;
     }
 }
 
