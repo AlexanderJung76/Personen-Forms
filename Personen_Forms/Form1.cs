@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+
 
 namespace Personen_Forms
 {
