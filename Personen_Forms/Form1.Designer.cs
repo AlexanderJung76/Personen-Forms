@@ -240,7 +240,7 @@
             this.BTN_CSV_Laden.Name = "BTN_CSV_Laden";
             this.BTN_CSV_Laden.Size = new System.Drawing.Size(100, 23);
             this.BTN_CSV_Laden.TabIndex = 21;
-            this.BTN_CSV_Laden.Text = "CSV Laden";
+            this.BTN_CSV_Laden.Text = "SQL Laden";
             this.BTN_CSV_Laden.UseVisualStyleBackColor = true;
             this.BTN_CSV_Laden.Click += new System.EventHandler(this.BTN_CSV_Laden_Click);
             // 

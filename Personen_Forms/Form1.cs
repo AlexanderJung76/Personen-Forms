@@ -10,8 +10,11 @@ namespace Personen_Forms
     public partial class Personen_Window : Form
     {
         private List<Personen> mylist = new List<Personen>();
-        private string path = @"c:\test\PersonenListenText.csv";
+        //private string path = @"c:\test\PersonenListenText.csv";
         private int index = 0;
+        static MySqlConnection myConnection;
+        static MySqlCommand myCommand;
+        static string myConnectionString = "SERVER=127.0.0.1;" + "DATABASE=my indisoft;" + "USER ID=Alex;" + "PASSWORD=TestME;";
 
 
         public Personen_Window()
@@ -143,60 +146,75 @@ namespace Personen_Forms
 
         private void WriteCsv()
         {
-            string content = "";
-            string trennzeichen = ";";
+   
+            myConnection = new MySqlConnection(myConnectionString);
+            myCommand = myConnection.CreateCommand();
 
             if (mylist.Count > 0)
             {
-                foreach (var pers in mylist)
-                {
-                    content += pers.Anrede + trennzeichen + pers.VorName + trennzeichen + pers.NachName + trennzeichen + pers.Strasse + trennzeichen + pers.PostLeitZahl + trennzeichen + pers.WohnOrt + trennzeichen + pers.Telefon + trennzeichen + pers.Email;
-                    content += Environment.NewLine;
-                }
-
                 try
                 {
-                    File.WriteAllText(path, content);
+                    myConnection.Open();
                 }
                 catch (Exception e)
                 {
                     MessageBox.Show(e.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
-                MessageBox.Show("Datei gespeichert", "File saved", MessageBoxButtons.OK, MessageBoxIcon.Information); 
-            }
-            else MessageBox.Show("Liste noch leer!", "file not saved", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                foreach (var pers in mylist)
+                {
+                    myCommand.CommandText = "INSERT INTO person (anrede, vorname, nachname, strasse, postleitzahl, ort, telefon, email)"
+                        + "VALUES('" + pers.Anrede + "', '" + pers.VorName + "', '" + pers.NachName + "', '" + pers.Strasse + "', '" + pers.PostLeitZahl + "', '" + pers.WohnOrt + "','" + pers.Telefon + "','" + pers.Email + "');";
 
+                    myCommand.ExecuteNonQuery();
+                    //MessageBox.Show("Datenbank gespeichert", "DB saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                myConnection.Close();
+
+            }
+            else MessageBox.Show("Liste noch leer!", "file not saved", MessageBoxButtons.OK, MessageBoxIcon.Error);            
         }
 
         private void ReadCsv()
-        {
-            string[] t_string;
+        {            
+            myConnection = new MySqlConnection(myConnectionString);
+            myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "Select * from person;";
+
+            MySqlDataReader myReader;
 
             try
             {
-                t_string = File.ReadAllLines(path);
-                mylist.Clear();
-                foreach (var satz in t_string)
-                {
-                    string[] t_personAtribute = satz.Split(';');
-                    Personen t_person = new Personen();
-                    t_person.Anrede = t_personAtribute[0];
-                    t_person.VorName = t_personAtribute[1];
-                    t_person.NachName = t_personAtribute[2];
-                    t_person.Strasse = t_personAtribute[3];
-                    t_person.PostLeitZahl = t_personAtribute[4];
-                    t_person.WohnOrt = t_personAtribute[5];
-                    t_person.Telefon = t_personAtribute[6];
-                    t_person.Email = t_personAtribute[7];
-                    mylist.Add(t_person);
-                }
+                myConnection.Open();
             }
             catch (Exception e)
             {
+
                 MessageBox.Show(e.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            MessageBox.Show("Datei geladen", "File loaded", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+            myReader = myCommand.ExecuteReader();
+            while (myReader.Read())
+            {
+                Personen t_person = new Personen();
+                string row = "";
+                for (int i = 0; i < myReader.FieldCount; i++)
+                {                    
+                    t_person.Anrede = myReader.GetValue(1).ToString();
+                    t_person.VorName = myReader.GetValue(2).ToString();
+                    t_person.NachName = myReader.GetValue(3).ToString();
+                    t_person.Strasse = myReader.GetValue(4).ToString();
+                    t_person.PostLeitZahl = myReader.GetValue(5).ToString();
+                    t_person.WohnOrt = myReader.GetValue(6).ToString();
+                    t_person.Telefon = myReader.GetValue(7).ToString();
+                    t_person.Email = myReader.GetValue(8).ToString();                    
+                }
+                mylist.Add(t_person);
+                Console.WriteLine(row);
+            }
+            myConnection.Close();
+            MessageBox.Show("Datenbank geladen", "DB loaded", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void TextBoxClear()
@@ -226,6 +244,8 @@ namespace Personen_Forms
             }
             else MessageBox.Show("Liste noch leer!", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        
 
     }
 }
